@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<title>Synthesia AI Telling Jokes</title>
+<style> 
+body {
+    background-color: rgb(0, 0, 0);
+    color: rgb(162, 228, 168);
+}
+div, iframe {
+    margin-top: 100px;
+    margin: 0 auto;
+    text-decoration-color: aquamarine;
+    font-family: "Monaco", monospace;
+    text-align: center;
+}
+
+iframe {
+    display: block;
+    border-style: solid;
+}
+
+#container {
+    border-style: solid;
+}
+
+#container a {
+    color: rgb(100, 129, 103);
+}
+
+#container p {
+    margin-top: 10px;
+    color: rgb(100, 129, 103);
+}
+
+  </style> 
+
+<html> 
+<body> 
+
+    <div id="container">
+        <h1>IS THIS A JOKE?</h1>
+        <h3>Refresh the page to get a random joke from AI Avatars.</h3>
+        <h3>Some of them even generated their own jokes from what they've learned. Can you tell which ones?</h3>
+        
+        <script>
+            // List of video ids
+            var videos = [
+                "742596906", "742588183", "742601525", "742603369", "742610240", "742612135", "742613885", "742615943", "742616918", "742621040", "742618886", "742622797", "742625009", "742628140", "742633381", "742635186", "742636794", "742640226", "742663983", "742670609"]
+            var index=Math.floor(Math.random() * videos.length); // get a random video id
+            
+            var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+            if(isSafari) { // Safari allows unmuted autoplay of videos hence we check if the browser is Safari
+               var html='<div class="span4"><iframe width="1289" height="720" src="https://player.vimeo.com/video/' + videos[index] + '?h=a667adf8ec&amp;badge=0&amp;autoplay=1&amp;muted=0&amp;loop=1&ampautopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allowfullscreen></iframe></div>';
+            } else { // Somee other browsers like Chrome doesn't allow unmuted autoplay of videos hence we need to mute the video.
+               var html='<div class="span4"><iframe width="1289" height="720" src="https://player.vimeo.com/video/' + videos[index] + '?h=a667adf8ec&amp;badge=0&amp;autoplay=1&amp;muted=1&amp;loop=1&ampautopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allowfullscreen></iframe><h3>Please unmute the video to hear the sound.</h3></div>';
+            }
+            document.write(html);
+        </script>
+    
+       <p>Jokes are generated with <a href="https://colab.research.google.com/github/borisdayma/huggingtweets/blob/master/huggingtweets-demo.ipynb#scrollTo=FlMACi0-8AHN">huggingtweets</a> which is fine-tuned by @DadJokeAPIBot twitter.</p>
+ 
+    </div>
+</body> 
+</html>
